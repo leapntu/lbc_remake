@@ -1,0 +1,163 @@
+ <!doctype html>
+
+<!-- v. 0.5 [26/6/14 @ 1600h] MTurk ID -->
+
+<html>
+<head>
+  <title>LEAP Experiment</title>
+  <script src="/js/prelim.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="jsPsych/jspsych.js"></script>
+  <!-- To display Text (or any HTML), plus single-stimuli package-->
+  <script src="jsPsych/plugins/jspsych-text.js"></script>
+  <script src="jsPsych/plugins/jspsych-single-stim-audio.js"></script>
+  <script src="jsPsych/plugins/jspsych-single-stim-audio-2.js"></script>
+  <script src="jsPsych/plugins/jspsych-survey-text.js"></script>
+   <script src="jsPsych/plugins/sha1.js"></script>
+   <script src="jsPsych/plugins/md5.js"></script>
+  <style>
+  body {background-color: #eee; margin: 0; font-family: Hoefler Text, Georgia, serif;}
+  #jspsych_target {margin: 10px auto; width: 80%; min-width: 800px; padding: 20px; background-color: #fff; border-radius: 10px; text-align: center; overflow: scroll}
+  .instr_key {display: inline-block; padding: 7px 5px 2px 5px; 
+             font-family: "Courier New", Courier, monospace; font-size: 1.2em; text-shadow: 0px 1px 0px #fff; font-weight: bold}
+  input {padding: 5px}
+  button {margin-top: 20px;}
+  </style>
+</head>
+<body>
+	<div id="jspsych_target"></div>
+</body>
+<script>
+	// Silencer
+
+	//console.log = function() {} 
+
+	// Query string for MTurk
+	
+	//var query_str = window.location.search;
+	//var turk_id = "";
+	//if(query_str != ""){
+	//	console.log(query_str);
+	//	turk_id = decodeURI(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURI("mtid").replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1")); // https://developer.mozilla.org/en-US/docs/Web/API/window.location
+	//	console.log(turk_id);
+	//}
+	//
+	//if (turk_id.trim() == ""){
+	//	throw new Error("No MTurk ID. Possibly an outsider.");
+	//	//return 0;
+	//}
+	
+
+	// Listening for Clicks
+	//var stimuli = ["img/congruent_left.gif", "img/congruent_right.gif", "img/incongruent_left.gif", "img/incongruent_right.gif"];
+    //var stimuli = ["img/congruent_left.gif"];
+	var stimuli = [ "audio/Segment.3minTrain.mp3" ]
+	
+	// Decision tasks
+	var stimuli_2 = [ "audio/bk1_fw1.mp3", "audio/bk2_fw2.mp3", "audio/bk3_fw3.mp3", "audio/bk4_fw4.mp3", "audio/bk5_fw5.mp3", "audio/bk6_fw6.mp3", "audio/fw1_bk1.mp3", "audio/fw2_bk2.mp3", "audio/fw3_bk3.mp3", "audio/fw4_bk4.mp3", "audio/fw5_bk5.mp3", "audio/fw6_bk6.mp3" ]
+
+	var stimuli_2_copy = stimuli_2.slice();
+	
+	var stimuli_random_order = [];
+
+	var n_trials = 12; //stimuli_2.length;
+	// Populate array with the randomised stimuli order 
+	for (var i = 0; i < n_trials; i++) {
+   		var random_choice = Math.floor(Math.random() * stimuli_2_copy.length);
+   		stimuli_random_order.push(stimuli_2_copy[random_choice]);
+		stimuli_2_copy.splice(random_choice, 1);
+	}
+	
+// Experiment Instructions
+var welcome_message = "<img id='logo' src='img/page_logo.png' /><br /><h2>Welcome!</h2><div id='instructions'><p>We are glad that you are joining us in this study.</p><p>To prepare, please find a quiet room, sit comfortably in front of your computer, and wear headphones. Make sure you adjust the sound level to a comfortable volume to your ears. If other devices like TV or radio, or a music player are turned on, please switch them off. <p>Reduce any external noise to a minimum (for example by closing the door or the window of your room, if that is possible). Make sure your cellphone is switched to silent during this task, and refrain from any other activities. Focus solely on this task for 8 minutes.</p><p>Please close all other applications. It is important that all of the computer resources are available to run the experiment. Applications running in the background may slow down the task. Playing music in the background on your computer will also interfere with the experiment.</p><br /><br /><p>Press <span class='instr_key'>ENTER/RETURN</span> key to begin.</p></div>";
+
+// var instructions_1 = "<h3>Informed Consent</h3><br><h3>Basic mechanisms of learning in adulthood</h3><br><h3>Principal Investigator: Dr Luca ONNIS</h3><h3>Linguistics and Multilingual Studies</h3><h3>Nanyang Technological University, Singapore</h3><br><div id='instructions' style='text-align: left'><p>As part of this study, you will be asked to listen to a sequence of sounds, or to pay attention to a sequence of visual objects.  You will also be asked to read a list of sentences in English. Depending on your language you may be asked to fill out a brief language background questionnaire.</p><p>Although you may not receive direct benefit from this study, research in this area is of general benefit to society. The results will help us understand the processes involved in learning and using language.  This knowledge will aid in improving effective teaching of a second language, or treating individuals with language disorders in the future.<p>There are no known discomforts or risks associated with participation in this study. The information you provide will remain confidential and will be used only for the purpose of the research. Your name will not be identified in any report of the results.</p><p>Your participation is voluntary and there is no penalty for refusing to participate. You can withdraw at any time you wish.</p><p>This study has been approved by  the Human Research Ethics Committee of Nanyang Technological University. If you have any questions or concerns about the research, please feel free to contact Dr Luca Onnis at 14 Nanyang Drive, Nanyang Technological University, Singapore (email lucao@ntu.edu.sg), or contact the IRB secretariat Ms Germaine Foo at 65922495or irb@ntu.edu.sg.</p><p>1. I confirm that I have read and understood the information sheet for the above study and have had the opportunity to ask questions. 2. I understand that my participation is voluntary and that I am free to withdraw at any time, without giving any reason, without my medical care or legal rights being affected. 3. I agree to take part in the above study.</p><p><b>If you agree to participate</b> and permit the researcher to use the data from this study, please press <span class='instr_key'>ENTER/RETURN</span> key.</p><p><b>If you do not agree to participate</b>, you may leave the page and/or close the browser window/tab.</p>";
+
+// var instructions_3 = "<h3>Let's get started!</h3><div id='instructions' style='text-align: left'><hr /><p>Continue: <span class='instr_key'>ENTER/RETURN</span> key</p></div>";
+
+// var instructions_4 = "<h3>Hehehe... Sorry for the audio... - WJ</h3><hr /><p>Continue: <span class='instr_key'>ENTER/RETURN</span> key</p>";
+
+var instructions_1 = "<h3>TASK 1</h3><h4>You will listen to a novel language. Words will be played in rapid sequence for about 3 minutes.<br />.</h4><p>Your task is to listen attentively to this language.<br />.</p><p>After this task you will also be asked to express your preference about what words go together well in the language you have heard.<br />This task lasts no more than 6 minutes altogether.</p><hr /><h4>Ready?</h4><p>Press <span class='instr_key'>ENTER/RETURN</span> key to start.</p>";
+	
+var instructions_2 = "<h3>TASK 2</h3><h4>You will now hear phrases from the language you have just heard.</h4><p> At each presentation, your task is to decide whether the first or the second phrase comes from the language you have just heard. If you are unsure, base your preference on your intuition.</p><hr /><h4>Ready?</h4><p>Press <span class='instr_key'>ENTER/RETURN</span> key to start.</p>";
+	
+var stimuli_2_text = "<p>Which phrase is more likely to belong to the language you've just heard?</p><p>Press <span class='instr_key'>1</span> for the first, or <span class='instr_key'>2</span> for the second.</p>";
+
+var debrief = "<div id='instructions'><h3>Thank you for participating!</h3><p>The aim of this study is to better understand human learning and perception, and how people may learn languages, when words are presented in rapid order. This research informs us of what type of relations are easier to &lsquo;pick up&rsquo;, and may help in devising better methods for language teaching.</p><p>For more information, you may contact the experimenter at leap@ntu.edu.sg</p></div>";
+
+    // defining groups of questions that will go together.
+    var page_1_questions = ["How may I address you?", "Where were you born?", "How old are you?"];
+
+    var survey_block = {
+    	type: 'survey-text',
+    	questions: [page_1_questions],
+    };
+
+
+	// BLOCKS
+
+	var welcome_block = {type: "text", text:[welcome_message]};
+	var instruction_block = {type: "text", text:[instructions_1]};
+
+	var test_block = {type: "single-stim", stimuli: stimuli, is_audio: true, choices: [32], continue_after_response : true, timing_stim : 180000 }; //timing_stim : 190000, prompt : "<p>+</p>"};
+	
+	var instruction_block_2 = {type: "text", text:[instructions_2]};
+
+    var decision_block = {type: "single-stim-2", 
+							stimuli: stimuli_random_order, 
+							choices: [49, 97, 50, 98], // Permits 1 and 2 on both the QWERTY-row and num-pad numbers
+							//continue_after_response : true,
+							is_audio : true,
+							prompt : stimuli_2_text
+						};
+
+	var debrief_block = {type: "text", text: [debrief]};
+
+	var now = new Date();
+
+	jsPsych.init({
+		display_element: $('#jspsych_target'),
+        experiment_structure: [welcome_block, instruction_block, test_block, instruction_block_2, decision_block],
+        on_finish: function(data) {
+    		$('#jspsych_target').append($('<p>', {
+        		//html: JSON.stringify(data, undefined, 2),
+        		//html: jsPsych.dataAsCSV({"subject": "subject_" + CryptoJS.MD5(now.getTime().toString()), "turk_id" : turk_id})
+			//html: "<h3>Experiment Complete</h3><p>Once again, thank you for your participation!</p>"
+			html: debrief
+    		}));
+          //saveData("saved_data", jsPsych.dataAsCSV({"subject": "subject_" + CryptoJS.MD5(now.getTime().toString()), "turk_id" : turk_id}))
+		console.log("Data saved to Local Storage");
+		var lsNTU = JSON.parse(window.localStorage.NTUdataLEAP);
+		var tempData = [];
+		for(i in jsPsych.data()[2]){tempData.push(jsPsych.data()[2][i])}
+		for(i in jsPsych.data()[4]){tempData.push(jsPsych.data()[4][i])}
+		lsNTU.push({"task":"lb_ambiguous", "data":tempData});
+		window.localStorage.NTUdataLEAP = JSON.stringify(lsNTU)
+  		}            
+	});
+
+	function saveData(filename, filedata){
+	   $.ajax({
+	      type:'post',
+	      cache: false,
+	      url: 'save_data.php', // this is the path to the above PHP script
+	      data: {filename: filename, now: now.getTime(), filedata: filedata}
+	   }).done(function(data){
+		console.log("Done: " + data);
+	   });
+	}
+
+// 	//var audio_left = 19000;
+// 	function audioCountDown(){
+// 	  audio_left -= 2000;
+// 	  console.log("a" + audio_left);
+//           if (audio_left > 0){
+// 		console.log("Continue to countdown...");
+// 	  	setTimeout(function(){audioCountDown()}, 2000);
+// 		return "<p>Approx. " + Math.round(audio_left / 1000) + " seconds left."
+// 	  }
+// 	}
+
+
+</script>
+</html>

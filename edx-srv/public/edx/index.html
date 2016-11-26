@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>LBC Tasks</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-2"> </div>
+      <div class="col-xs-8">
+
+        <h1 id=idMessage></h1>
+        <h2>Tasks to Complete Study</h2>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><a href="../agl/index.html" target="_blank">Sequence Exposure</a></div>
+          <div class="panel-body">
+            <h4>Instructions</h4>
+            <p> You will listen to a novel language. Words will be played in rapid sequence for about 3 minutes. Your task is to listen attentively to this language. After this task you will also be asked to express your preference about what words go together well in the language you have heard. This task lasts no more than 6 minutes altogether.</p>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><a href="../spr_frank/index.html" target="_blank">Self-Paced Reading Frank</a></div>
+          <div class="panel-body">
+            <h4>Instructions</h4>
+            <p> You will be asked to read a number of sentences, using the spacebar to progress word by word. Some sentences will be followed by a yes/no question regarding it's contents.</p>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><a href="../spr_newport/index.html" target="_blank">Self-Paced Reading Newport</a></div>
+          <div class="panel-body">
+            <h4>Instructions</h4>
+            <p> You will be asked to read a number of sentences, using the spacebar to progress word by word. Some sentences will be followed by a yes/no question regarding it's contents. Unlike above, some of these sentences will sound strange or strike you as contianing errors</p>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-heading"><a href="http://ntuhss.az1.qualtrics.com/SE/?SID=SV_ey3QFYoGscD9Chn" target="_blank">Linguistic Background Survery</a></div>
+          <div class="panel-body">
+            <h4>Instructions</h4>
+            <p> Finally, please answer a short survey about your language use and language learning history</p>
+            <p> When prompted for your ID number, please us the one displayed at the top of this page.</p>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-xs-2"> </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
+
+<script>
+var idMessage = document.getElementById("idMessage")
+idMessage.innerHTML = "Your subject ID is: "+localStorage.LEAP_subject_id
+</script>
