@@ -7,7 +7,7 @@ PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
 -- Table: agl
-CREATE TABLE agl (datum_id INTEGER PRIMARY KEY AUTOINCREMENT, event_id INTEGER REFERENCES data_events (event_id), file TEXT, choice INTEGER);
+CREATE TABLE agl (datum_id INTEGER PRIMARY KEY AUTOINCREMENT, event_id INTEGER REFERENCES data_events (event_id), file TEXT, choice INTEGER, rt INTEGER);
 
 -- Table: data_events
 CREATE TABLE data_events (event_id INTEGER PRIMARY KEY AUTOINCREMENT, subject_id TEXT REFERENCES subjects (subject_id), "table" TEXT, write_time INTEGER);

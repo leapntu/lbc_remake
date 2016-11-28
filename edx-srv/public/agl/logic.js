@@ -3,6 +3,7 @@ var canvas
 var stage
 var stimuli
 var train_start
+var test_start
 var test_items
 var test_index
 var test_end
@@ -115,6 +116,7 @@ function startTest(){
   stage.removeAllChildren()
   stage.update()
   stimuli = createjs.Sound.play(test_items[test_index])
+  test_start = getMS()
   mode = 'testing'
 }
 
@@ -123,6 +125,7 @@ function handleTest(){
   stage.update()
   if(test_index < test_end){
     stimuli = createjs.Sound.play(test_items[test_index])
+    test_start = getMS()
     mode = "testing"
   }
 
@@ -154,7 +157,7 @@ function handleKey(event){
     if(event.key == "1" || event.key == "2"){
       mode = 'none'
       file = stimuli.src
-      dataSet.push( {"file": file, "choice": event.key} )
+      dataSet.push( {"file": file, "choice": event.key, "rt":getMS() - test_start} )
       test_index += 1
       handleTest()
     }

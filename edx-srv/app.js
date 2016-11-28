@@ -3,10 +3,10 @@ var app = express()
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 var sqlite3 = require('sqlite3')
-var db = new sqlite3.Database('edx.db')
+var db = new sqlite3.Database('lbc.db')
 
 //BASH to clone new database from .sql file
-//sqlite3 edx.db < edx.sql
+//sqlite3 lbc.db < lbc.sql
 
 app.use(express.static('public/'))
 
@@ -113,8 +113,8 @@ io.on('connection', function (socket) {
           for (var i = 0; i < end; i++) {
             datum = req['data'][i]
             db.run(
-              "INSERT INTO agl ('event_id', 'file', 'choice') VALUES(?, ?, ?)",
-              [event_id, datum.file, datum.choice]
+              "INSERT INTO agl ('event_id', 'file', 'choice', 'rt') VALUES(?, ?, ?, ?)",
+              [event_id, datum.file, datum.choice, datum.rt]
             )
           }
           db.run("COMMIT")

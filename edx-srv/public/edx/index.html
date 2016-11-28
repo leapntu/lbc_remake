@@ -42,19 +42,11 @@
         </div>
 
         <div class="panel panel-default">
-          <div class="panel-heading"><a href="../spr_newport/index.html" target="_blank">Self-Paced Reading Newport</a></div>
-          <div class="panel-body">
-            <h4>Instructions</h4>
-            <p> You will be asked to read a number of sentences, using the spacebar to progress word by word. Some sentences will be followed by a yes/no question regarding it's contents. Unlike above, some of these sentences will sound strange or strike you as contianing errors</p>
-          </div>
-        </div>
-
-        <div class="panel panel-default">
           <div class="panel-heading"><a href="http://ntuhss.az1.qualtrics.com/SE/?SID=SV_ey3QFYoGscD9Chn" target="_blank">Linguistic Background Survery</a></div>
           <div class="panel-body">
             <h4>Instructions</h4>
             <p> Finally, please answer a short survey about your language use and language learning history</p>
-            <p> When prompted for your ID number, please us the one displayed at the top of this page.</p>
+            <p> When prompted for your SubjectID, please use the one displayed at the top of this page.</p>
           </div>
         </div>
 
@@ -63,13 +55,11 @@
     </div>
   </div>
 
-
-
 </body>
 
 </html>
 
 <script>
 var idMessage = document.getElementById("idMessage")
-idMessage.innerHTML = "Your subject ID is: "+localStorage.LEAP_subject_id
+idMessage.innerHTML = "Your username/subjectID is: "+localStorage.email
 </script>

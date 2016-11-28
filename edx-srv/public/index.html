@@ -28,7 +28,7 @@
       <div class="panel panel-default">
         <div class="panel-heading"><h3>LBC Portal</h3></div>
         <div class="panel-body">
-          Email: <br> <input id="email" type="text"> <br>
+          Username: <br> <input id="email" type="text"> <br>
           Password: <br> <input id="password" type="text"> <br>
           <button type="button" onclick=login()>Login</button>
           <button type="button" onclick=register()>New User</button>
@@ -55,6 +55,7 @@ function login() {
         }
       else if (data.password == password) {
         localStorage.LEAP_subject_id = data.subject_id
+        localStorage.email = email
         location = "../edx/index.html"
       }
     }
@@ -71,6 +72,7 @@ function register() {
     function (data) {
       if (data.status == "created") {
         localStorage.LEAP_subject_id = data.subject_id
+        localStorage.email = email
         location = "/edx/index.html" }
       else {alert("The email has already been registered, please try another address")}
     }
