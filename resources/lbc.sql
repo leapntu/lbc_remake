@@ -1,8 +1,4 @@
---
--- File generated with SQLiteStudio v3.1.1 on Sat Nov 26 13:18:47 2016
---
--- Text encoding used: UTF-8
---
+
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
 
@@ -26,6 +22,11 @@ CREATE TABLE spr_short (datum_id INTEGER PRIMARY KEY AUTOINCREMENT, event_id INT
 
 -- Table: subjects
 CREATE TABLE subjects (subject_id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT);
+
+-- Add Default Values
+INSERT INTO metadata (task, variable, value) VALUES ('spr_frank', 'count', 0);
+
+INSERT INTO metadata (task, variable, value) VALUES ('spr_newport', 'count', 0);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;
